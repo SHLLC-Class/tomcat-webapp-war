@@ -93,13 +93,13 @@
 	<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Releases Nexus Repository</name>
+	      <name> Nexus Repository</name>
 	      <url> http://3.144.200.138:8081/repository/test-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Snapshot Nexus Repository </name>
+	      <name> Nexus Repository </name>
 	      <url>http://3.144.200.138:8081/repository/test-snapshot/</url>
 	    </snapshotRepository>
 	    
