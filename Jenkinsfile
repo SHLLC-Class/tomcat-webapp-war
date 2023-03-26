@@ -1,5 +1,5 @@
 
-# Scripted pipeline
+// Scripted pipeline
 
 node {
   
