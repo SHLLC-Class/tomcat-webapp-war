@@ -5,6 +5,8 @@ node {
   
  def mavenHome = tool name: "maven3"
   
+     properties([ pipelineTriggers([githubPush('SHLLC-Class/tomcat-webapp-war', 'dev')]) ])
+
    stage('1. clone') { 
         echo "Cloning Dev Branch"
         git branch: 'dev', changelog: false, poll: false, url: 'https://github.com/SHLLC-Class/tomcat-webapp-war'
