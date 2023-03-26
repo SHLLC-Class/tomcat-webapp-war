@@ -25,6 +25,7 @@ node {
        sh "${mavenHome}/bin/mvn deploy"
    }
   
+  // cont. delivery
   stage('5. Approval') {
        echo "Get Approval"
        timeout(time:5, unit: 'DAYS') {
