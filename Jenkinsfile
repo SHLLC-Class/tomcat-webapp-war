@@ -32,8 +32,8 @@ node {
       }
   }
   
-  stage('6 Deploy- tomcat) {
-       echo 'doploy 2 tomcat'
+  stage('6 Deploy- tomcat') {
+       echo 'deploy 2 tomcat'
        deploy adapters: [tomcat9(credentialsId: '34331ea9-1337-4377-89dc-30b2b4adbed2', path: '', url: 'http://34.229.69.50:8080/')], contextPath: '/scripted', war: 'target/*war'
   }
 }
