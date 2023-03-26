@@ -1,5 +1,52 @@
 pipeline {
 
-agent: any
-
+  agent: any
+  
+  tools
+  {
+    maven 'maven3'
+  }
+  
+  triggers{
+    pollSCM('* * * * *')
+    // githubPush(repository: 'SHLLC-Class/tomcat-webapp-war', branches: 'dev')
+  }
+  
+  options{
+    timestamps()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '2', daysToKeepStr: '', numToKeepStr: '2'))
+  }
+  
+  stages{
+    
+    stage('clone')
+    {
+       steps{
+           git branch: 'dev', changelog: false, poll: false, url: 'https://github.com/SHLLC-Class/tomcat-webapp-war'
+       }
+    }
+    
+    stage('Build')
+    {
+      steps{
+	      sh "mvn clean package"
+	    }
+    }
+   
+    stage('ExecuteSonarQubeReport')
+    {
+      steps{
+	      sh "mvn sonar:sonar"
+	    }
+    }
+   
+    stage('UploadArtifactintoNexus')
+    {
+      steps{
+	      sh "mvn deploy"
+	    }
+    }
+    
+  }
+  
 }
