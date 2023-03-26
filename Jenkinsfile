@@ -26,9 +26,15 @@ node {
    }
   
   stage('5. Approval') {
+       echo "Get Approval"
        timeout(time:5, unit: 'DAYS') {
          input message: 'please approve deployment'
      }
+  }
+  
+  stage('6. Deploy') {
+       echo "Deploy"
+      deploy adapters: [tomcat9(credentialsId: '34331ea9-1337-4377-89dc-30b2b4adbed2', path: '', url: 'http://34.229.69.50:8080/')], contextPath: '/dev', war: 'target/*war' 
   }
    
 }
