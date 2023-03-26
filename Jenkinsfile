@@ -23,5 +23,18 @@ node {
       sh "${mavenHome}/bin/mvn deploy"
   }
   
+  // cd = cont. deployment. (automatic deployments)
+  // cd = cont. delivery ((Production)) approval before deployment
+  stage('5. Approval') {
+      echo "Please provide approvel"
+      timeout(time: 5, unit: 'DAYS') {
+         input message: "Please approve deployment"
+      }
+  }
+  
+  stage('6 Deploy- tomcat) {
+       echo 'doploy 2 tomcat'
+       deploy adapters: [tomcat9(credentialsId: '34331ea9-1337-4377-89dc-30b2b4adbed2', path: '', url: 'http://34.229.69.50:8080/')], contextPath: '/scripted', war: 'target/*war'
+  }
 }
 
