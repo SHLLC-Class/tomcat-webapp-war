@@ -3,7 +3,7 @@
 
 node {
   
-  def mavenHome = tool name 'maven3'
+ def mavenHome = tool name: "maven3"
   
    stage('1. clone') { 
         echo "Cloning Dev Branch"
