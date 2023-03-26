@@ -24,5 +24,11 @@ node {
        echo "Artifactory"
        sh "${mavenHome}/bin/mvn deploy"
    }
+  
+  stage('7.Approval') {
+       timeout(time:5, unit 'DAYS') {
+          input message: 'please approve deployment'
+     }
+  }
    
 }
