@@ -25,9 +25,9 @@ node {
        sh "${mavenHome}/bin/mvn deploy"
    }
   
-  stage('7.Approval') {
-       timeout(time:5, unit 'DAYS') {
-          input message: 'please approve deployment'
+  stage('5. Approval') {
+       timeout(time:5, unit: 'DAYS') {
+         input message: 'please approve deployment'
      }
   }
    
