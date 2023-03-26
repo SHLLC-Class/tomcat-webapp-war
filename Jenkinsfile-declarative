@@ -19,28 +19,28 @@ pipeline {
   
   stages{
     
-    stage('clone')
+    stage('1. clone')
     {
        steps{
            git branch: 'dev', changelog: false, poll: false, url: 'https://github.com/SHLLC-Class/tomcat-webapp-war'
        }
     }
     
-    stage('Build')
+    stage('2. Build')
     {
       steps{
 	      sh "mvn clean package"
 	    }
     }
    
-    stage('ExecuteSonarQubeReport')
+    stage('3. ExecuteSonarQubeReport')
     {
       steps{
 	      sh "mvn sonar:sonar"
 	    }
     }
    
-    stage('UploadArtifactintoNexus')
+    stage('4. UploadArtifactintoNexus')
     {
       steps{
 	      sh "mvn deploy"
